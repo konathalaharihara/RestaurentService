@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'; // Assuming you're using Redux for state management
 import { loginSuccess, loginFailure } from '../../redux/user/user.action'; // Actions for handling login result (loginSuccess, loginFailure)
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [formData, setFormData] = useState({ username: '', password: '' });
     const [errors, setErrors] = useState({});
@@ -40,6 +42,7 @@ const handleSubmit = async (e) => {
             
             // Dispatch success action with the user data
             dispatch(loginSuccess(response.data));
+            navigate('/auth');
 
             // Optionally, handle any other actions, like redirecting or showing a success message
         } catch (error) {
@@ -57,7 +60,7 @@ const handleSubmit = async (e) => {
         if (window.M && window.M.updateTextFields) {
             window.M.updateTextFields();
         }
-    }, [formData]);
+    }, []);
 
     return (
         <div
@@ -81,7 +84,7 @@ const handleSubmit = async (e) => {
                         value={formData.username}
                         onChange={handleChange} 
                     />
-                    <label htmlFor="username">Username</label>
+                    <label  html htmlFor="username">Username</label>
                     {errors.username && <span className='helper-text' style={{ color: 'red' }}>{errors.username}</span>}
                 </div>
 
@@ -94,7 +97,7 @@ const handleSubmit = async (e) => {
                         value={formData.password}
                         onChange={handleChange}
                     />
-                    <label htmlFor="password">Password</label>
+                    <label  html htmlFor="password">Password</label>
                     {errors.password && <span className='helper-text' style={{ color: 'red' }}>{errors.password}</span>}
                 </div>
 

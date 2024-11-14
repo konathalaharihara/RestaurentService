@@ -5,6 +5,8 @@ import { PersistGate } from 'redux-persist/integration/react'
 import  {store, persistor}  from './redux/store.js';
 import './index.css'
 import App from './App.jsx'
+import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min.js';
 
 createRoot(document.getElementById('root')).render(
 <Provider store={store}>
