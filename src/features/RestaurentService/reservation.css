@@ -1,0 +1,11 @@
+.reservation form {
+    padding: 2rem 0;
+}
+
+input[type="text"], input[type="email"], input[type="number"] {
+    background-color: #fff;
+}
+
+button {
+    font-weight: bold;
+}

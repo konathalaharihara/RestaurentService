@@ -1,0 +1,27 @@
+.checkout table {
+    margin-top: 2rem;
+}
+
+.checkout h5 {
+    font-weight: bold;
+}
+
+
+.payment h5 {
+    margin-top: 2rem;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"] {
+    background-color: #fff;
+}
+
+
+.contact h5 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+textarea.materialize-textarea {
+    background-color: #fff;
+}
