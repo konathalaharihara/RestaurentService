@@ -37,7 +37,7 @@ const NavBar = () => {
           Plate Manager
         </Typography> 
       </Box>
-      <List>
+      <List onClick={handleDrawerToggle}>
         <ListItem button component={Link} to="menu">
           <ListItemText primary="Menu" />
         </ListItem>
@@ -70,7 +70,7 @@ const NavBar = () => {
             color="inherit"
             edge="start"
             aria-label="menu"
-            sx={{ display: { xs: "block", sm: "none" } }}
+            sx={{ display: { xs: "block", sm: "none" }, '&:focus':{ backgroundColor: 'inherit'}}}
             onClick={handleDrawerToggle}
           >
             <MenuIcon />

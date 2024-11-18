@@ -1,16 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Box, CssBaseline, Switch } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { useThemeContext } from "./context/theme-context";
 import NavBar from "./features/pages/navbar";
-import Footer from "./features/pages/Footer";
+import Footer from "./features/pages/footer";
 import LoginForm from "./features/User/login";
 import { Checkout, Contact, HomePage, Payment } from "./features/pages";
 import { Reservation, Order } from "./features/RestaurentService";
 import FoodMenu from "./features/menu/foodMenu";
-import DarkModeIcon from "@mui/icons-material/NightlightRound";
-import LightModeIcon from "@mui/icons-material/WbSunny";
 
 function App() {
   const { darkMode, toggleTheme } = useThemeContext();
@@ -66,14 +64,6 @@ function App() {
 
         {/* Footer */}
         <Footer />
-              {/* Toggle Button for Dark/Light Mode */}
-              <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {/* Dark/Light Mode Icons and Switch */}
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              {/* Dark/Light Mode Icon */}
-              {darkMode ? <DarkModeIcon /> : <LightModeIcon />}
-            </Box>
-          </Box>
       </Box>
 
     </MuiThemeProvider>

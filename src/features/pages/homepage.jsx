@@ -8,6 +8,7 @@ import {
   CardContent,
   Box,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -44,6 +45,7 @@ const HomePage = () => {
             size="large"
             href="#reservation"
             sx={{ mt: 2 }}
+            component={Link} to="reservation"
           >
             Reserve a Table
           </Button>

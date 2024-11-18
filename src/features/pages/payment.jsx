@@ -1,67 +1,204 @@
-import React from 'react';
-import './page.css';
+import React, { useState } from 'react';
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Grid,
+  Box,
+  Alert,
+} from '@mui/material';
+
 const Payment = () => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    address: '',
+    city: '',
+    zipCode: '',
+    cardNumber: '',
+    expiryDate: '',
+    cvv: '',
+  });
+
+  const [error, setError] = useState('');
+
+  // Handle form data change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  // Validate the form
+  const validateForm = () => {
+    const { fullName, email, address, city, zipCode, cardNumber, expiryDate, cvv } = formData;
+    if (!fullName || !email || !address || !city || !zipCode || !cardNumber || !expiryDate || !cvv) {
+      setError('Please fill in all fields.');
+      return false;
+    }
+    if (cardNumber.length !== 16) {
+      setError('Card number must be 16 digits.');
+      return false;
+    }
+    if (cvv.length !== 3) {
+      setError('CVV must be 3 digits.');
+      return false;
+    }
+    setError('');
+    return true;
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      // Process the payment (for now, it's just a placeholder)
+      alert('Payment successful!');
+      // Reset form data
+      setFormData({
+        fullName: '',
+        email: '',
+        address: '',
+        city: '',
+        zipCode: '',
+        cardNumber: '',
+        expiryDate: '',
+        cvv: '',
+      });
+    }
+  };
+
   return (
-<>
-    <div className="section payment orange lighten-5">
-        <div className="container">
-            <h4 className="center orange-text text-darken-3">Secure Payment</h4>
-            <form className="col s12">
-                <h5>Billing Information</h5>
-                <div className="row">
-                    <div className="input-field col s12 m6">
-                        <input id="full_name" type="text" className="validate" required/>
-                        <label html htmlFor="full_name">Full Name</label>
-                    </div>
-                    <div className="input-field col s12 m6">
-                        <input id="email" type="email" className="validate" required/>
-                        <label html htmlFor="email">Email</label>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="input-field col s12">
-                        <input id="address" type="text" className="validate" required/>
-                        <label html htmlFor="address">Billing Address</label>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="input-field col s12 m6">
-                        <input id="city" type="text" className="validate" required/>
-                        <label html htmlFor="city">City</label>
-                    </div>
-                    <div className="input-field col s12 m6">
-                        <input id="zip" type="text" className="validate" required/>
-                        <label html htmlFor="zip">Zip Code</label>
-                    </div>
-                </div>
+    <Container sx={{ padding: 4 }}>
+      {/* Page Header */}
+      <Typography variant="h4" color="secondary" align="center" gutterBottom>
+        Secure Payment
+      </Typography>
 
-                <h5>Card Information</h5>
-                <div className="row">
-                    <div className="input-field col s12">
-                        <input id="card_number" type="text" className="validate" maxlength="16" required/>
-                        <label html htmlFor="card_number">Card Number</label>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="input-field col s12 m6">
-                        <input id="expiry_date" type="text" className="validate" placeholder="MM/YY" required/>
-                        <label html htmlFor="expiry_date">Expiry Date</label>
-                    </div>
-                    <div className="input-field col s12 m6">
-                        <input id="cvv" type="text" className="validate" maxlength="3" required/>
-                        <label html htmlFor="cvv">CVV</label>
-                    </div>
-                </div>
+      {/* Error Message */}
+      {error && <Alert severity="error">{error}</Alert>}
 
-                <div className="row center">
-                    <button className="btn-large green darken-2 waves-effect waves-light" type="submit">Confirm Payment</button>
-                </div>
-            </form>
-        </div>
-    </div>
+      <Box component="form" noValidate onSubmit={handleSubmit}>
+        {/* Billing Information Section */}
+        <Typography variant="h5" gutterBottom>
+          Billing Information
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Full Name"
+              variant="outlined"
+              fullWidth
+              required
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Email"
+              type="email"
+              variant="outlined"
+              fullWidth
+              required
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Billing Address"
+              variant="outlined"
+              fullWidth
+              required
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="City"
+              variant="outlined"
+              fullWidth
+              required
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Zip Code"
+              variant="outlined"
+              fullWidth
+              required
+              name="zipCode"
+              value={formData.zipCode}
+              onChange={handleChange}
+            />
+          </Grid>
+        </Grid>
 
-</>
-  )
-}
+        {/* Card Information Section */}
+        <Typography variant="h5" gutterBottom sx={{ marginTop: 4 }}>
+          Card Information
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              label="Card Number"
+              variant="outlined"
+              fullWidth
+              required
+              name="cardNumber"
+              value={formData.cardNumber}
+              onChange={handleChange}
+              inputProps={{ maxLength: 16 }}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Expiry Date"
+              placeholder="MM/YY"
+              variant="outlined"
+              fullWidth
+              required
+              name="expiryDate"
+              value={formData.expiryDate}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="CVV"
+              variant="outlined"
+              fullWidth
+              required
+              name="cvv"
+              value={formData.cvv}
+              onChange={handleChange}
+              inputProps={{ maxLength: 3 }}
+            />
+          </Grid>
+        </Grid>
 
-export default Payment
+        {/* Confirm Payment Button */}
+        <Box textAlign="center" sx={{ marginTop: 4 }}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            size="large"
+          >
+            Confirm Payment
+          </Button>
+        </Box>
+      </Box>
+    </Container>
+  );
+};
+
+export default Payment;
