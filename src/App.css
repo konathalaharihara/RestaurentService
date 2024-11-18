@@ -1,27 +1,4 @@
-.hero {
-    padding: 4rem 0;
-}
-
-.features .card {
-    transition: transform 0.2s ease-in-out;
-}
-
-.features .card:hover {
-    transform: translateY(-10px);
-}
-
-
-/* Menu css */
-
-.menu .card {
-    transition: transform 0.2s ease-in-out;
-}
-
-.menu .card:hover {
-    transform: translateY(-10px);
-}
-
-.card-image img {
-    height: 200px;
-    object-fit: cover;
+body {
+    margin: 0;
+    padding: 0;
 }

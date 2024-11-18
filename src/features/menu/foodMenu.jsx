@@ -1,76 +1,65 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Grid, Card, CardContent, CardMedia, Typography, Button, Switch, FormControlLabel, Container } from '@mui/material';
+import { useThemeContext } from "../../context/theme-context";
+// Sample menu data
+const menuItems = [
+  {
+    id: 1,
+    name: "Dish 1",
+    description: "Spicy, delicious, and fresh.",
+    price: "$15.99",
+    image: "dish1.jpg",
+  },
+  {
+    id: 2,
+    name: "Dish 2",
+    description: "Sweet, savory, and delightful.",
+    price: "$12.99",
+    image: "dish2.jpg",
+  },
+  {
+    id: 3,
+    name: "Dish 3",
+    description: "Tangy, rich, and satisfying.",
+    price: "$18.99",
+    image: "dish3.jpg",
+  },
+];
 
 const FoodMenu = () => {
+    const { darkMode } = useThemeContext(); // Use the current theme state
   return (
-        <>
-        <div className="section search orange lighten-5">
-          <div className="container">
-              <h4 className="center orange-text text-darken-3">Our Menu</h4>
-              <div className="row">
-                  <div className="col s12">
-                      <div className="input-field">
-                          <input id="search" type="text" placeholder="Search for dishes..." />
-                          <label  html htmlFor="search">Search Menu</label>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div><div className="section menu">
-              <div className="container">
-                  <div className="row">
-                      <div className="col s12 m6 l4">
-                          <div className="card">
-                              <div className="card-image">
-                                  <img src="dish1.jpg" alt="Dish 1" />
-                                  <span className="card-title">Dish Name</span>
-                              </div>
-                              <div className="card-content">
-                                  <p>A short description of the dish. Spicy, delicious, and fresh.</p>
-                                  <p><strong>Price:</strong> $15.99</p>
-                              </div>
-                              <div className="card-action">
-                                  <a href="#" className="orange-text">Add to Cart</a>
-                              </div>
-                          </div>
-                      </div>
+      <Container sx={{ paddingTop: 4 }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Our Menu
+        </Typography>
 
-                      <div className="col s12 m6 l4">
-                          <div className="card">
-                              <div className="card-image">
-                                  <img src="dish2.jpg" alt="Dish 2" />
-                                  <span className="card-title">Dish Name</span>
-                              </div>
-                              <div className="card-content">
-                                  <p>A short description of the dish. Sweet, savory, and delightful.</p>
-                                  <p><strong>Price:</strong> $12.99</p>
-                              </div>
-                              <div className="card-action">
-                                  <a href="#" className="orange-text">Add to Cart</a>
-                              </div>
-                          </div>
-                      </div>
-                      <div className="col s12 m6 l4">
-                          <div className="card">
-                              <div className="card-image">
-                                  <img src="dish3.jpg" alt="Dish 3" />
-                                  <span className="card-title">Dish Name</span>
-                              </div>
-                              <div className="card-content">
-                                  <p>A short description of the dish. Tangy, rich, and satisfying.</p>
-                                  <p><strong>Price:</strong> $18.99</p>
-                              </div>
-                              <div className="card-action">
-                                  <a href="#" className="orange-text">Add to Cart</a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          </>
-  )
-}
+        <Grid container spacing={4}>
+          {menuItems.map((item) => (
+            <Grid item xs={12} sm={6} md={4} key={item.id}>
+              <Card sx={{ display: 'flex', flexDirection: 'column' }}>
+                <CardMedia
+                  component="img"
+                  height="200"
+                  image={item.image}
+                  alt={item.name}
+                />
+                <CardContent>
+                  <Typography variant="h6">{item.name}</Typography>
+                  <Typography variant="body2">{item.description}</Typography>
+                  <Typography variant="body1" color="text.primary">
+                    <strong>Price:</strong> {item.price}
+                  </Typography>
+                </CardContent>
+                <Button variant="contained" color="primary" sx={{ margin: 2 }}>
+                  Add to Cart
+                </Button>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+  );
+};
 
 export default FoodMenu;
-
-

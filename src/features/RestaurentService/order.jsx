@@ -1,5 +1,6 @@
 import './order.css';
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Order = () => {
   return (
@@ -68,7 +69,7 @@ const Order = () => {
                 </div>
             </div>
             <div className="row center">
-                <a href="#checkout" className="btn-large green darken-2 waves-effect waves-light">Proceed to Checkout</a>
+                <a href="#checkout" className="btn-large green darken-2 waves-effect waves-light"><Link to="/checkout"> Proceed to Checkout</Link></a>
             </div>
         </div>
     </div>

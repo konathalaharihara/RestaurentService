@@ -1,5 +1,6 @@
 import React from 'react';
 import './page.css';
+import { Link } from 'react-router-dom';
 
 const Checkout = () => {
   return (
@@ -51,7 +52,7 @@ const Checkout = () => {
                     <h5 className="orange-text text-darken-3">Total: $34.97</h5>
                 </div>
                 <div className="col s12 m6 right-align">
-                    <a href="#payment" className="btn-large green darken-2 waves-effect waves-light">Proceed to Payment</a>
+                    <a href="#payment" className="btn-large green darken-2 waves-effect waves-light"><Link to="/payment" >Proceed to Payment</Link></a>
                 </div>
             </div>
         </div>
