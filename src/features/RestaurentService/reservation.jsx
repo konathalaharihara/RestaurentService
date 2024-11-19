@@ -1,73 +1,62 @@
-import React, { useEffect } from 'react';
-import './reservation.css'
+import React, { useState } from "react";
+import { Typography, Box, TextField, Button } from "@mui/material";
+import { useThemeContext } from "../../context/theme-context"; 
 
 const Reservation = () => {
-    useEffect(() => {
-        // Initialize Datepicker and Timepicker
-        const dateElems = document.querySelectorAll('.datepicker');
-        const timeElems = document.querySelectorAll('.timepicker');
+  const { darkMode } = useThemeContext();
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [partySize, setPartySize] = useState("");
 
-        // Initialize Datepicker
-        window.M.Datepicker.init(dateElems, {
-            autoClose: true,
-            format: 'yyyy-mm-dd'
-        });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Reservation for ${name} on ${date} at ${time} for ${partySize} people.`);
+  };
 
-        // Initialize Timepicker
-        window.M.Timepicker.init(timeElems, {
-            autoClose: true
-        });
-
-        // Cleanup function to destroy instances
-        return () => {
-            // window.M.Datepicker.destroy(dateElems);
-            // window.M.Timepicker.destroy(timeElems);
-        };
-    }, []);
   return (
-<>
-    <div className="section reservation orange lighten-5">
-        <div className="container">
-            <h4 className="center orange-text text-darken-3">Reserve a Table</h4>
-            <form className="col s12">
-                <div className="row">
-                    <div className="input-field col s12 m6">
-                        <input id="name" type="text" className="validate" required/>
-                        <label  html htmlFor="name">Full Name</label>
-                    </div>
-                    <div className="input-field col s12 m6">
-                        <input id="email" type="email" className="validate" required/>
-                        <label  html htmlFor="email">Email</label>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="input-field col s12 m6">
-                        <input id="phone" type="text" className="validate" required/>
-                        <label  html htmlFor="phone">Phone Number</label>
-                    </div>
-                    <div className="input-field col s12 m6">
-                        <input id="party-size" type="number" className="validate" required/>
-                        <label  html htmlFor="party-size">Party Size</label>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="input-field col s12 m6">
-                        <input type="text" className="datepicker" id="date" required/>
-                        <label  html htmlFor="date">Reservation Date</label>
-                    </div>
-                    <div className="input-field col s12 m6">
-                        <input type="text" className="timepicker" id="time" required/>
-                        <label  html htmlFor="time">Reservation Time</label>
-                    </div>
-                </div>
-                <div className="row center">
-                    <button className="btn-large orange darken-3 waves-effect waves-light" type="submit">Confirm Reservation</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</>
-  )
-}
+    <Box sx={{ padding: 2, backgroundColor: darkMode ? "#333" : "#f5f5f5" }}>
+      <Typography variant="h4" gutterBottom color={darkMode ? "#fff" : "inherit"}>
+        Reserve a Table
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="Your Name"
+          fullWidth
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          sx={{ marginBottom: 2 }}
+        />
+        <TextField
+          type="date"
+          label="Reservation Date"
+          fullWidth
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          sx={{ marginBottom: 2 }}
+        />
+        <TextField
+          type="time"
+          label="Reservation Time"
+          fullWidth
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+          sx={{ marginBottom: 2 }}
+        />
+        <TextField
+          type="number"
+          label="Party Size"
+          fullWidth
+          value={partySize}
+          onChange={(e) => setPartySize(e.target.value)}
+          sx={{ marginBottom: 2 }}
+        />
+        <Button type="submit" variant="contained" color="primary">
+          Reserve Now
+        </Button>
+      </form>
+    </Box>
+  );
+};
 
-export default Reservation
+export default Reservation;

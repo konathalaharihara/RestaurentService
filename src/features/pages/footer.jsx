@@ -1,22 +1,25 @@
-import React from 'react'
+import React from 'react';
+import { Box, Typography } from '@mui/material';
 
 const Footer = () => {
-  return (
-<>
-<footer className="page-footer grey darken-3">
-        <div className="container">
-            <div className="row">
-                <div className="col s12 center">
-                    <p>&copy; 2024 Restaurant Name. All Rights Reserved.</p>
-                    <a href="#" className="white-text">Facebook</a> | 
-                    <a href="#" className="white-text">Instagram</a> | 
-                    <a href="#" className="white-text">Twitter</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-</>
-  )
-}
+    return (
+        <Box
+            component="footer"
+            sx={{
+                position: 'bottom',
+                bottom: 0,
+                width: '100%',
+                backgroundColor: 'primary.main',
+                color: 'white',
+                py: 2,
+                textAlign: 'center',
+            }}
+        >
+            <Typography variant="body2">
+                © {new Date().getFullYear()} Plate Manager. All Rights Reserved.
+            </Typography>
+        </Box>
+    );
+};
 
 export default Footer;

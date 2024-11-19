@@ -1,33 +1,121 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Box,
+  Button,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
+import { useThemeContext } from "../../context/theme-context"; // Import the theme context
 
 const NavBar = () => {
-    useEffect(() => {
-        window.M.Sidenav.init(document.querySelectorAll('.sidenav'));
-    }, []);
-    return (
-        <>
-            <nav className="orange darken-3">
-                <div className="nav-wrapper container">
-                    <Link to='/' className="brand-logo">Plate Manager</Link>
-                    <ul id="nav-mobile" className="right hide-on-med-and-down">
-                        <li><Link to='menu'>Menu</Link></li>
-                        <li><Link to='reservation'>Reserve Table</Link></li>
-                        <li><Link to='order'>Order Online</Link></li>
-                        <li><Link to='contact-us'>Contact Us</Link></li>
-                    </ul>
-                    <a href="#" data-target="mobile-nav" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                </div>
-            </nav>
+  const { darkMode } = useThemeContext(); // Use the current theme state
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-            <ul className="sidenav" id="mobile-nav">
-                <li><Link to='menu'>Menu</Link></li>
-                <li><Link to='reservation'>Reserve Table</Link></li>
-                <li><Link to='order'>Order Online</Link></li>
-                <li><Link to='contact-us'>Contact Us</Link></li>
-            </ul>
-        </>
-    )
-}
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
-export default NavBar
+  const drawer = (
+    <Box sx={{ width: 250 }}>
+            <CloseIcon sx={{float: "right"}} onClick={handleDrawerToggle}/>
+      <Box sx={{ padding: "16px", backgroundColor: darkMode ? "#333" : "#ff9800", textAlign: "center" }}>
+        <Typography
+          variant="h6"
+          component={Link}
+          to="/"
+          sx={{ textDecoration: "none", color: darkMode ? "#fff" : "inherit", flexGrow: 1 }}
+        >
+          Plate Manager
+        </Typography> 
+      </Box>
+      <List onClick={handleDrawerToggle}>
+        <ListItem button component={Link} to="menu">
+          <ListItemText primary="Menu" />
+        </ListItem>
+        <ListItem button component={Link} to="reservation">
+          <ListItemText primary="Reserve Table" />
+        </ListItem>
+        <ListItem button component={Link} to="order">
+          <ListItemText primary="Order Online" />
+        </ListItem>
+        <ListItem button component={Link} to="contact-us">
+          <ListItemText primary="Contact Us" />
+        </ListItem>
+      </List>
+    </Box>
+  );
+
+  return (
+    <>
+      <AppBar
+        position="fixed"
+        color="warning"
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          boxShadow: "none",
+          backgroundColor: darkMode ? "#333" : "#ff9800",
+        }}
+      >
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            edge="start"
+            aria-label="menu"
+            sx={{ display: { xs: "block", sm: "none" }, '&:focus':{ backgroundColor: 'inherit'}}}
+            onClick={handleDrawerToggle}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            variant="h6"
+            component={Link}
+            to="/"
+            sx={{ flexGrow: 1, textDecoration: "none", color: darkMode ? "#fff" : "inherit" }}
+          >
+            Plate Manager
+          </Typography>
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Button color="inherit" component={Link} to="menu">
+              Menu
+            </Button>
+            <Button color="inherit" component={Link} to="reservation">
+              Reserve Table
+            </Button>
+            <Button color="inherit" component={Link} to="order">
+              Order Online
+            </Button>
+            <Button color="inherit" component={Link} to="contact-us">
+              Contact Us
+            </Button>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      <Drawer
+        anchor="left"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true,
+        }}
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 2, // Ensures drawer shows above content but below AppBar
+          marginTop: "64px", // Adjusts the position so the drawer starts below the AppBar
+        }}
+      >
+        {drawer}
+      </Drawer>
+    </>
+  );
+};
+
+export default NavBar;

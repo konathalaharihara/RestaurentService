@@ -1,48 +1,143 @@
-import React from 'react'
+import React from "react";
+import {
+  Container,
+  Typography,
+  Button,
+  Grid,
+  Card,
+  CardContent,
+  Box,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
-<>
-    <div className="section hero orange lighten-5">
-        <div className="container center">
-            <h1 className="orange-text text-darken-3">Welcome to Our Restaurant</h1>
-            <p className="flow-text">Delicious food, exceptional service, and unforgettable experiences.</p>
-            <a href="#reservation" className="btn-large green">Reserve a Table</a>
-        </div>
-    </div>
-    <div className="section features">
-        <div className="container">
-            <div className="row">
-                <div className="col s12 m4">
-                    <div className="card">
-                        <div className="card-content center">
-                            <span className="card-title">Online Menu</span>
-                            <p>Explore our menu and order online with ease.</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col s12 m4">
-                    <div className="card">
-                        <div className="card-content center">
-                            <span className="card-title">Reservations</span>
-                            <p>Book your table online anytime, anywhere.</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col s12 m4">
-                    <div className="card">
-                        <div className="card-content center">
-                            <span className="card-title">Track Orders</span>
-                            <p>Get real-time updates on your food delivery.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <>
+      {/* Hero Section */}
+      <Box
+        sx={{
+          bgcolor: "orange.50",
+          py: 6,
+          textAlign: "center",
+        }}
+      >
+        <Container>
+          <Typography
+            variant="h2"
+            component="h1"
+            color="orange.700"
+            fontWeight="bold"
+            gutterBottom
+          >
+            Welcome to Our Restaurant
+          </Typography>
+          <Typography
+            variant="h6"
+            component="p"
+            color="textSecondary"
+            gutterBottom
+          >
+            Delicious food, exceptional service, and unforgettable experiences.
+          </Typography>
+          <Button
+            variant="contained"
+            color="success"
+            size="large"
+            href="#reservation"
+            sx={{ mt: 2 }}
+            component={Link} to="reservation"
+          >
+            Reserve a Table
+          </Button>
+        </Container>
+      </Box>
 
-</>
-  )
-}
+      {/* Features Section */}
+      <Box sx={{ py: 6 }}>
+        <Container>
+          <Grid container spacing={4}>
+            {/* Online Menu */}
+            <Grid item xs={12} sm={6} md={4}>
+              <Card
+                sx={{
+                  textAlign: "center",
+                  height: "100%",
+                  boxShadow: 2,
+                  "&:hover": { boxShadow: 4 },
+                }}
+              >
+                <CardContent>
+                  <Typography
+                    variant="h5"
+                    component="div"
+                    color="primary"
+                    fontWeight="bold"
+                  >
+                    Online Menu
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" mt={1}>
+                    Explore our menu and order online with ease.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+
+            {/* Reservations */}
+            <Grid item xs={12} sm={6} md={4}>
+              <Card
+                sx={{
+                  textAlign: "center",
+                  height: "100%",
+                  boxShadow: 2,
+                  "&:hover": { boxShadow: 4 },
+                }}
+              >
+                <CardContent>
+                  <Typography
+                    variant="h5"
+                    component="div"
+                    color="primary"
+                    fontWeight="bold"
+                  >
+                    Reservations
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" mt={1}>
+                    Book your table online anytime, anywhere.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+
+            {/* Track Orders */}
+            <Grid item xs={12} sm={6} md={4}>
+              <Card
+                sx={{
+                  textAlign: "center",
+                  height: "100%",
+                  boxShadow: 2,
+                  "&:hover": { boxShadow: 4 },
+                }}
+              >
+                <CardContent>
+                  <Typography
+                    variant="h5"
+                    component="div"
+                    color="primary"
+                    fontWeight="bold"
+                  >
+                    Track Orders
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" mt={1}>
+                    Get real-time updates on your food delivery.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+    </>
+  );
+};
 
 export default HomePage;
