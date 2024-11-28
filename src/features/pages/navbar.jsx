@@ -17,16 +17,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useThemeContext } from "../../context/theme-context"; // Import the theme context
 
 const NavBar = () => {
-  const { darkMode } = useThemeContext(); // Use the current theme state
+  const { darkMode, toggleTheme } = useThemeContext(); // Use the current theme state
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+    toggleTheme();
   };
 
   const drawer = (
     <Box sx={{ width: 250 }}>
-            <CloseIcon sx={{float: "right"}} onClick={handleDrawerToggle}/>
       <Box sx={{ padding: "16px", backgroundColor: darkMode ? "#333" : "#ff9800", textAlign: "center" }}>
         <Typography
           variant="h6"
@@ -35,7 +35,17 @@ const NavBar = () => {
           sx={{ textDecoration: "none", color: darkMode ? "#fff" : "inherit", flexGrow: 1 }}
         >
           Plate Manager
-        </Typography> 
+        </Typography>
+        <IconButton
+          onClick={handleDrawerToggle}
+          sx={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
       </Box>
       <List onClick={handleDrawerToggle}>
         <ListItem button component={Link} to="menu">
@@ -62,7 +72,7 @@ const NavBar = () => {
         sx={{
           zIndex: (theme) => theme.zIndex.drawer + 1,
           boxShadow: "none",
-          backgroundColor: darkMode ? "#333" : "#ff9800",
+          backgroundColor: darkMode ? "333#" : "#ff9800",
         }}
       >
         <Toolbar>
@@ -70,7 +80,7 @@ const NavBar = () => {
             color="inherit"
             edge="start"
             aria-label="menu"
-            sx={{ display: { xs: "block", sm: "none" }, '&:focus':{ backgroundColor: 'inherit'}}}
+            sx={{ display: { xs: "block", sm: "none" }, '&:focus': { backgroundColor: 'inherit' } }}
             onClick={handleDrawerToggle}
           >
             <MenuIcon />

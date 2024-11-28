@@ -10,7 +10,7 @@ export const useThemeContext = () => {
 
 // Provider component to manage theme state
 export const ThemeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   // Toggle the dark/light theme
   const toggleTheme = () => {

@@ -5,3 +5,8 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   plugins: [react()],
 })
+
+// vite.config.js
+// export default {
+//   base: '/RestaurentService/',  // Adjust this to match your repository name
+// };

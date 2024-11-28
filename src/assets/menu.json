@@ -5356,5 +5356,25 @@
       ],
       "__typename": "MenuGroup"
     }
-  ]
+  ],
+"spice": ["Mild", "Mild-Medium", "Medium", "Medium-Hot", "Hot", "Extra Hot"],
+"allergies": [
+  "Dairy",
+  "Gluten",
+  "Nuts",
+  "Shellfish",
+  "Soy",
+  "Eggs",
+  "Fish",
+  "Peanuts",
+  "Tree Nuts",
+  "Wheat",
+  "Sesame",
+  "Corn",
+  "Sulfites",
+  "Mustard",
+  "Celery",
+  "Lupin"
+]
+
 }

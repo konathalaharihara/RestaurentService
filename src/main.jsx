@@ -6,6 +6,7 @@ import  {store, persistor}  from './redux/store.js';
 import './index.css'
 import {ThemeProvider } from './context/theme-context';
 import App from './App';
+import React from 'react';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
