@@ -33,6 +33,7 @@ const NavBar = () => {
           component={Link}
           to="/"
           sx={{ textDecoration: "none", color: darkMode ? "#fff" : "inherit", flexGrow: 1 }}
+          onClick={toggleTheme}
         >
           Plate Manager
         </Typography>
@@ -90,21 +91,25 @@ const NavBar = () => {
             component={Link}
             to="/"
             sx={{ flexGrow: 1, textDecoration: "none", color: darkMode ? "#fff" : "inherit" }}
+            onClick={toggleTheme}
           >
             Plate Manager
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <Button color="inherit" component={Link} to="menu">
+            <Button color="inherit" component={Link} to="/menu">
               Menu
             </Button>
-            <Button color="inherit" component={Link} to="reservation">
+            <Button color="inherit" component={Link} to="/reservation">
               Reserve Table
             </Button>
-            <Button color="inherit" component={Link} to="order">
+            <Button color="inherit" component={Link} to="/order">
               Order Online
             </Button>
-            <Button color="inherit" component={Link} to="contact-us">
+            <Button color="inherit" component={Link} to="/contact-us">
               Contact Us
+            </Button>
+            <Button color="inherit" component={Link} to="/login">
+              Login
             </Button>
           </Box>
         </Toolbar>

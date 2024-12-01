@@ -20,21 +20,21 @@ const Menu = () => {
   const { darkMode } = useThemeContext();
 
   const menuItems = menu;
-  const [expanded, setExpanded] = useState(null);
+  const [expanded, setExpanded] = useState({index:null, ind:null});
 
-  const handleExpandClick = (index) => {
-    setExpanded(expanded === index ? null : index);
+  const handleExpandClick = (index,ind) => {
+    setExpanded(expanded.index === index ? {index:null, ind:null} : {index, ind});
   };
 
 
 
   return (
-    <Box sx={{ padding: 2, backgroundColor: darkMode ? "#121212" : "#f5f5f5" }}>
+    <Box sx={{ padding: 2, bgcolor: darkMode ? "#121212" : "#f5f5f5" }}>
       {menuItems?.menu.map((menu, ind) => (
         <>
-          <Typography variant="h4" gutterBottom>{menu?.name}
+          <Typography variant="h4" gutterBottom padding={2}>{menu?.name}
           </Typography>
-          <Grid container spacing={2} padding={2} >
+          <Grid container spacing={2} padding={1} >
             {menu?.items.map((item, index) => (
               <Grid item xs={12} sm={6} md={4} key={index} >
                 <Card
@@ -72,7 +72,7 @@ const Menu = () => {
                       ${item?.prices[0]?.toFixed(2)}
                     </Typography>
                     <IconButton
-                      onClick={() => handleExpandClick(index)}
+                      onClick={() => handleExpandClick(index,ind)}
                       sx={{
                         position: "absolute",
                         top: 10,
@@ -85,7 +85,7 @@ const Menu = () => {
                       <ExpandMoreIcon />
                     </IconButton>
                   </CardContent>
-                  <Collapse in={expanded === index} timeout="auto" unmountOnExit>
+                  <Collapse in={expanded.index === index && expanded.ind === ind} timeout="auto" unmountOnExit>
                     <CardContent>
                       {/* <Typography variant="body2">
                     <strong>Spice Level:</strong> {item.spiceLevel}
@@ -115,7 +115,6 @@ const Menu = () => {
                               display: "flex",
                               flexWrap: "wrap",
                               justifyContent: "space-between", // Distributes space evenly
-                              gap: 2, // Optional spacing between items
                             }}
                           >
                             {menuItems.spice.map((option) => (
@@ -147,7 +146,6 @@ const Menu = () => {
                               display: "flex",
                               flexWrap: "wrap",
                               justifyContent: "space-between", // Distributes space evenly
-                              gap: 2, // Optional spacing between items
                             }}
                           >
                             {menuItems.allergies.map((option) => (
@@ -158,6 +156,7 @@ const Menu = () => {
                                 sx={{ flex: "1 1 45%" }} // Adjust width as needed (e.g., 20% for 5 items per row)
                               />
                             ))}
+
                           </Box>
                         </Box>
                       )}
@@ -179,3 +178,4 @@ const Menu = () => {
 };
 
 export default Menu;
+

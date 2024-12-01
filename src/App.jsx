@@ -21,7 +21,7 @@ function App() {
         main: darkMode ? "#90caf9" : "#1976d2", // Adjust primary color for both themes
       },
       background: {
-        default: darkMode ? "#121212" : "#f5f5f5", // Background color for both themes
+        default: darkMode ? "#121212" : "#fff", // Background color for both themes
       },
     },
   });
